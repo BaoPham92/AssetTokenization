@@ -1,0 +1,25 @@
+{
+  "name": "assettokenization",
+  "version": "1.0.0",
+  "description": "A sandbox application with a potential real world case scenario of developing a smart contract on the Ethereum blockchain network. ---",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BaoPham92/AssetTokenization.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BaoPham92/AssetTokenization/issues"
+  },
+  "homepage": "https://github.com/BaoPham92/AssetTokenization#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.0.0-beta.0"
+  }
+}

@@ -4,7 +4,6 @@ const VKTokenSale = artifacts.require("VKTokenSale.sol");
 module.exports = async (deployer) => {
     let addr = await web3.eth.getAccounts();
     let VKInstance = await VKToken.deployed();
-    console.log(await deployer)
 
     await deployer.deploy(VKToken, 1000000000);
     await deployer.deploy(VKTokenSale, 1, addr[0], VKToken.address);

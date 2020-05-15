@@ -6,8 +6,12 @@ const expect = chai.expect;
 contract("VKToken", async (accounts) => {
     const [initialHolder, recipient, anotherAccount] = accounts;
 
+    beforeEach(async () => {
+        this.mainToken = await VKToken.new(1000);
+    })
+    
     it("All tokens should be in accounts.", async () => {
-        let instance = await VKToken.deployed();
+        let instance = this.mainToken;
         let totalSupply = await instance.totalSupply();
 
         // * INITIAL ADDRESS TO BE === TOTALSUPPLY FROM SMART CONTRACT
@@ -15,8 +19,8 @@ contract("VKToken", async (accounts) => {
     })
 
     it("Able to send tokens from Account 1 to Account 2", async () => {
-        let instance = await VKToken.deployed();
-        let totalSupply = await instance.totalSupply(); 
+        let instance = this.mainToken;
+        let totalSupply = await instance.totalSupply();
 
         expect(instance.balanceOf(initialHolder)).to.eventually.be.a.bignumber.equal(totalSupply);
         expect(instance.transfer(recipient, 1)).to.eventually.be.fulfilled;
@@ -25,9 +29,9 @@ contract("VKToken", async (accounts) => {
     });
 
     it("It's not possible to send more tokens than account 1 has", async () => {
-        let instance = await VKToken.deployed();
+        let instance = this.mainToken;
         let balanceOfAccount = await instance.balanceOf(initialHolder);
-        
+
         expect(instance.transfer(recipient, new BN(balanceOfAccount + 1))).to.eventually.be.rejected;
         return expect(instance.balanceOf(initialHolder)).to.eventually.be.a.bignumber.equal(balanceOfAccount);
     });
